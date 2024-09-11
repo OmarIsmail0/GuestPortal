@@ -31,71 +31,78 @@ const StyledButton = styled(Button)(({ theme }) => ({
 const App = () => {
   return (
     <Grid2 container spacing={2} alignItems="center">
-      <Grid2 item size={4}>
-        <Card sx={{ minHeight: 250 }}>
-          <CardContent>
-            <Grid2 container spacing={2} alignItems="center">
-              {/* Avatar Section */}
-              <Grid2 item>
-                <Avatar sx={{ bgcolor: "grey.300", width: 50, height: 50 }}>
-                  <PersonIcon />
-                </Avatar>
-              </Grid2>
+      <Grid2 item size={{ xs: 12, sm: 6, md: 4, xl: 3 }}>
+        <Card sx={{ maxHeight: 270, margin: "auto", boxShadow: 2 }}>
+          <CardContent
+            sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: "300px" }}
+          >
+            <div>
+              <Grid2 container spacing={2} alignItems="center" sx={{ marginBottom: 3 }}>
+                <Grid2 size={{ xs: 8, sm: 6, md: 8 }}>
+                  <CustomIconButton bgcolor={"white"}>
+                    <PersonIcon style={{ color: "gray", fontSize: 30 }} />
+                  </CustomIconButton>
+                </Grid2>
+                <Grid2 size={{ xs: 4, sm: 6, md: 4 }}>
+                  <Typography sx={{ color: "gray", textAlign: "right" }}>ShortletsMalta</Typography>
+                </Grid2>
 
-              {/* Main Contact Information */}
-              <Grid2 item xs>
-                <Typography variant="h6" component="div">
-                  TEST!!! Michael Knight
-                </Typography>
-                <Grid2 container spacing={1} alignItems="center">
-                  <Grid2 item>
-                    <PhoneIphoneIcon fontSize="small" />
+                <Grid2 size={12} container alignItems="center" sx={{ marginTop: -1 }}>
+                  <Grid2 size={12}>
+                    <Typography>TEST!!! Michael Knight</Typography>
                   </Grid2>
-                  <Grid2 item>
-                    <Typography variant="body2">000000999999</Typography>
+                  <Grid2 size={12} sx={{ marginTop: -1 }}>
+                    <Grid2 container alignItems="center" spacing={2}>
+                      <Grid2 item>
+                        <PhoneIphoneIcon fontSize="small" />
+                      </Grid2>
+                      <Grid2 item>
+                        <Typography variant="body2">000000999999</Typography>
+                      </Grid2>
+                    </Grid2>
+                  </Grid2>
+                  <Grid2 size={12} sx={{ marginTop: -1, marginBottom: -1 }}>
+                    <Grid2 container spacing={2} alignItems="center">
+                      <Grid2 item>
+                        <EmailIcon fontSize="small" />
+                      </Grid2>
+                      <Grid2 item>
+                        <Typography variant="body2">--</Typography>
+                      </Grid2>
+                    </Grid2>
                   </Grid2>
                 </Grid2>
-                <Grid2 container spacing={1} alignItems="center">
-                  <Grid2 item>
-                    <EmailIcon fontSize="small" />
-                  </Grid2>
-                  <Grid2 item>
-                    <Typography variant="body2">--</Typography>
-                  </Grid2>
+              </Grid2>
+              {/* Divider */}
+              <hr style={{ marginTop: "auto" }} /> {/* Positioned at the bottom of the content */}
+              {/* Footer Section */}
+              <Grid2
+                container
+                spacing={2}
+                alignItems="center"
+                size={12}
+                sx={{ display: "flex", justifyContent: "space-between" }}
+              >
+                <Grid2>
+                  <IconButton>
+                    <HomeIcon fontSize="small" />
+                  </IconButton>
+                </Grid2>
+                <Grid2>
+                  <Typography variant="body1" component="div">
+                    +356 7744 4174
+                  </Typography>
+                  <Link href="mailto:info@shortletsmalta.com" variant="body2" color="primary">
+                    info@shortletsmalta.com
+                  </Link>
                 </Grid2>
               </Grid2>
-
-              {/* Company Info */}
-              <Grid2 item>
-                <Typography variant="body2" color="textSecondary">
-                  ShortletsMalta
-                </Typography>
-              </Grid2>
-            </Grid2>
-
-            {/* Divider */}
-            <hr />
-
-            {/* Contact Details at Bottom */}
-            <Grid2 container spacing={2} alignItems="center">
-              <Grid2 item>
-                <IconButton>
-                  <HomeIcon fontSize="small" />
-                </IconButton>
-              </Grid2>
-              <Grid2 item xs>
-                <Typography variant="body1" component="div">
-                  +356 7744 4174
-                </Typography>
-                <Link href="mailto:info@shortletsmalta.com" variant="body2" color="primary">
-                  info@shortletsmalta.com
-                </Link>
-              </Grid2>
-            </Grid2>
+            </div>
           </CardContent>
         </Card>
       </Grid2>
-      <Grid2 item size={4}>
+
+      <Grid2 item size={{ xs: 12, sm: 6, md: 4, xl: 3 }}>
         <CustomCard
           title="Flight"
           date="05/09/2024"
@@ -108,7 +115,7 @@ const App = () => {
           taxiInfo="You have 1 taxi"
         />
       </Grid2>
-      <Grid2 item size={4}>
+      <Grid2 item size={{ xs: 12, sm: 6, md: 4, xl: 3 }}>
         <CustomCard
           title="Flight"
           date="11/09/2024"
