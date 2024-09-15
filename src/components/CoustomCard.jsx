@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
 
-import { Card, CardContent, Typography, Button, Grid2 } from "@mui/material";
+import { Card, CardContent, Typography, Button, Grid2, Divider } from "@mui/material";
 
 import CheckIcon from "@mui/icons-material/Check";
 import CustomIconButton from "./CustomIconButton";
 
 import { styled } from "@mui/material/styles";
 
-const StyledButton = styled(Button)(({ theme, bgColor }) => ({
+const StyledButton = styled(Button)(({ bgColor }) => ({
   backgroundColor: bgColor || "#4b8f89", // Button color
   borderRadius: "8px",
   padding: "8px 16px",
@@ -22,7 +22,6 @@ const StyledButton = styled(Button)(({ theme, bgColor }) => ({
 }));
 
 const CustomCard = ({
-  title,
   date,
   time,
   checkLabel,
@@ -36,10 +35,11 @@ const CustomCard = ({
   icon2BgColor,
 }) => {
   return (
-    <Card sx={{ maxHeight: 270, margin: "auto", boxShadow: 2 }}>
-      <CardContent
-        sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", minHeight: "300px" }}
-      >
+    <Card
+      sx={{ maxHeight: 270, margin: "auto", boxShadow: 2, display: "flex", flexDirection: "column", height: "100%" }}
+    >
+      <CardContent sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", flexGrow: 1 }}>
+        {/* Main Content */}
         <div>
           <Grid2 container spacing={2} alignItems="center" sx={{ marginBottom: 3 }}>
             <Grid2 size={{ xs: 8, sm: 6, md: 8 }}>
@@ -79,20 +79,23 @@ const CustomCard = ({
               </Grid2>
             </Grid2>
           </Grid2>
+          {/* Spacer to push footer down */}
+          <div style={{ flexGrow: 1 }}></div>
           {/* Divider */}
-          <hr style={{ marginTop: "auto" }} /> {/* Positioned at the bottom of the content */}
-          {/* Footer Section */}
-          <Grid2 container alignItems="center">
-            <Grid2 size={{ xs: 6, sm: 12, md: 6 }}>
-              <Typography color="grey" fontSize={16} component="p">
-                {id}
-              </Typography>
-            </Grid2>
-            <Grid2 size={{ xs: 6, sm: 12, md: 6 }} sx={{ display: "flex", justifyContent: "flex-end" }}>
-              <StyledButton bgColor={bgColor}>{buttonText}</StyledButton>
-            </Grid2>
-          </Grid2>
+          <Divider sx={{ mt: 2 }} /> {/* Adjusted margin to move it down */}
         </div>
+
+        {/* Footer Section */}
+        <Grid2 container alignItems="center" sx={{ mt: 2 }}>
+          <Grid2 size={{ xs: 6, sm: 12, md: 6 }}>
+            <Typography color="grey" fontSize={16} component="p">
+              {id}
+            </Typography>
+          </Grid2>
+          <Grid2 size={{ xs: 6, sm: 12, md: 6 }} sx={{ display: "flex", justifyContent: "flex-end" }}>
+            <StyledButton bgColor={bgColor}>{buttonText}</StyledButton>
+          </Grid2>
+        </Grid2>
       </CardContent>
     </Card>
   );
