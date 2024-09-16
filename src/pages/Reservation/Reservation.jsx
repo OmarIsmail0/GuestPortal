@@ -10,11 +10,10 @@ import CheckOut from "./CheckOut";
 import PropertyInfo from "./PropertyInfo";
 import WifiQRCode from "./WifiQRCode";
 import DoorQRCode from "./DoorQRCode";
-import GarageDoorCode from "./GarageDoorCode";
-import DoorCode_2 from "./DoorCode_2";
-import DoorCode_1 from "./DoorCode_1";
 import KeySafeBoxes from "./KeySafeBoxes";
 import Navbar from "../../components/Navbar";
+import DoorCode from "./DoorCode";
+import MediaFiles from "./MediaFiles";
 
 const Reservation = () => {
   const [clientInfo, setClientInfo] = useState();
@@ -27,6 +26,7 @@ const Reservation = () => {
   const [door_2, setDoor_2] = useState();
   const [garageDoor, setGarageDoor] = useState();
   const [keySafeBoxes, setKeySafeBoxes] = useState();
+  const [mediaFiles, setMediaFiles] = useState();
 
   const { reservation, pin } = useParams();
 
@@ -111,6 +111,8 @@ const Reservation = () => {
         return data.ListEmergencyKeySafeBoxes.find((key) => e.InfoInteger == Number(key.element_id));
       });
       setKeySafeBoxes(keys);
+
+      setMediaFiles(data.Reservationinfo.Property_physical.Mediafiles);
     };
 
     if (reservation && !pin) {
@@ -122,7 +124,7 @@ const Reservation = () => {
 
   return (
     <>
-      <Grid2 container spacing={2} alignItems="center">
+      <Grid2 container spacing={2} alignItems="center" sx={{ minHeight: "100vh" }}>
         <Grid2 size={12}>
           <Navbar />
         </Grid2>
@@ -160,20 +162,20 @@ const Reservation = () => {
           </Grid2>
         )}
 
-        {garageDoor && (
+        {door_1 && (
           <Grid2 item size={{ xs: 12, sm: 6, md: 4, xl: 3 }}>
-            <DoorCode_1 door_1={door_1} />
+            <DoorCode door={door_1} />
           </Grid2>
         )}
-        {garageDoor && (
+        {door_2 && (
           <Grid2 item size={{ xs: 12, sm: 6, md: 4, xl: 3 }}>
-            <DoorCode_2 door_2={door_2} />
+            <DoorCode door={door_2} />
           </Grid2>
         )}
 
         {garageDoor && (
           <Grid2 item size={{ xs: 12, sm: 6, md: 4, xl: 3 }}>
-            <GarageDoorCode garageDoor={garageDoor} />
+            <DoorCode door={garageDoor} />
           </Grid2>
         )}
 
@@ -182,6 +184,17 @@ const Reservation = () => {
             <KeySafeBoxes keySafeBoxes={keySafeBoxes} />
           </Grid2>
         )}
+
+        <Grid2 size={12} />
+
+        {mediaFiles &&
+          mediaFiles.map((e, index) => (
+            <Grid2 key={index} item size={{ xs: 12, sm: 6, md: 4, xl: 3 }}>
+              <MediaFiles media={e} />
+            </Grid2>
+          ))}
+
+        <Grid2 size={12} />
       </Grid2>
     </>
   );

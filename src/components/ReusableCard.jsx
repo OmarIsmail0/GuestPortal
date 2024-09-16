@@ -1,17 +1,17 @@
 /* eslint-disable react/prop-types */
 import { Card, CardContent, Divider, Grid2 } from "@mui/material";
 
-const ReusableCard = ({ body, footer, footerFlag = true }) => {
+const ReusableCard = ({ body, footer, footerFlag = true, media = false }) => {
   return (
     <Card
       sx={{
-        minHeight: 250,
-        maxHeight: 250,
+        // Height: 250,
+        height: media ? 310 : 250,
         margin: "auto",
         boxShadow: 2,
         display: "flex",
         flexDirection: "column",
-        height: "100%",
+        // height: "100%",
       }}
     >
       <CardContent sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", flexGrow: 1 }}>
