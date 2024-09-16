@@ -189,7 +189,7 @@ const Reservation = () => {
 
         {mediaFiles &&
           mediaFiles.map((e, index) => (
-            <Grid2 key={index} item size={{ xs: 12, sm: 6, md: 4, xl: 3 }}>
+            <Grid2 key={index} item size={{ xs: 6, sm: 6, xl: 4 }}>
               <MediaFiles media={e} />
             </Grid2>
           ))}

@@ -6,7 +6,7 @@ const ReusableCard = ({ body, footer, footerFlag = true, media = false }) => {
     <Card
       sx={{
         // Height: 250,
-        height: media ? 310 : 250,
+        height: media ? "" : 250,
         margin: "auto",
         boxShadow: 2,
         display: "flex",
