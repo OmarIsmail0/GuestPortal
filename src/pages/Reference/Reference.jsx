@@ -27,6 +27,10 @@ const Reference = () => {
     navigate(`/reservation/${reservation.internal_ref}/pin/${reservation.access_pincode}`);
   };
 
+  const handleClick = () => {
+    navigate("/");
+  };
+
   return (
     <Box
       sx={{
@@ -54,7 +58,9 @@ const Reference = () => {
         >
           Open
         </Button>
-        <Button variant="outlined">Cancel</Button>
+        <Button variant="outlined" onClick={handleClick}>
+          Cancel
+        </Button>
       </Box>
       <Box>
         {reference.map((item, index) => (

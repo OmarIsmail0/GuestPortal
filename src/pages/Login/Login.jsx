@@ -1,12 +1,74 @@
-import { Button, TextField, Box, Grid2, Typography, Paper, InputAdornment } from "@mui/material";
+import {
+  Button,
+  TextField,
+  Box,
+  Grid2,
+  Typography,
+  Paper,
+  InputAdornment,
+  Snackbar,
+  SnackbarContent,
+} from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import LockIcon from "@mui/icons-material/Lock";
-import FlagIcon from "@mui/icons-material/Flag"; // Placeholder for the actual flag icon
-import BackgroundImage from "../../assets/loginImg.png"; // Add your background image
+import BackgroundImage from "../../assets/loginImg.png";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Spinner from "../Spinner/Spinner";
 
 const Login = () => {
+  const [reservationNumber, setReservationNumber] = useState("");
+  const [pinCode, setPinCode] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (location.state?.error) {
+      setErrorMessage(location.state.error);
+      setSnackbarOpen(true);
+    }
+  }, [location.state]);
+
+  const handleCloseSnackbar = () => {
+    setSnackbarOpen(false);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    console.log("Reservation Number:", reservationNumber);
+    console.log("PIN Code:", pinCode);
+
+    if (reservationNumber && pinCode) {
+      setLoading(true);
+      console.log("object");
+      axios
+        .get(`https://uploads.shortletsmalta.com/GuestPortal_Validation/?rid=${2409048590}&pincode=${5371}`)
+        .then((e) => {
+          setLoading(false);
+          if (e.data) {
+            navigate(`/rid/${reservationNumber}/pin/${pinCode}`);
+          } else {
+            navigate(`/reservation/${reservationNumber}/pin/${pinCode}`);
+          }
+        })
+        .catch(() => setLoading(false));
+    } else {
+      alert("Please enter both reservation number and PIN code.");
+    }
+  };
+
+  if (loading) return <Spinner />;
+
   return (
     <Box
+      component="form"
+      onSubmit={handleSubmit}
       sx={{
         display: "flex",
         justifyContent: "center",
@@ -15,6 +77,17 @@ const Login = () => {
         backgroundColor: "#f0f0f0",
       }}
     >
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ horizontal: "right", vertical: "top" }}
+      >
+        <SnackbarContent
+          message={errorMessage}
+          sx={{ bgcolor: "#a3150e", color: "white" }} // Red background and white text
+        />
+      </Snackbar>
       <Grid2
         container
         component={Paper}
@@ -26,7 +99,6 @@ const Login = () => {
         }}
       >
         <Grid2
-          item
           size={{ sm: 12, md: 6 }}
           sx={{
             display: "flex",
@@ -48,11 +120,12 @@ const Login = () => {
               <PersonIcon sx={{ fontSize: 80, color: "#dcdcdc" }} />
             </Box>
 
-            {/* Reservation No input */}
             <TextField
               fullWidth
               variant="outlined"
               label="RESERVATION NO."
+              value={reservationNumber}
+              onChange={(e) => setReservationNumber(e.target.value)}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -63,12 +136,13 @@ const Login = () => {
               sx={{ marginBottom: 2 }}
             />
 
-            {/* PIN code input */}
             <TextField
               fullWidth
               variant="outlined"
               label="PIN code"
               type="password"
+              value={pinCode} // Link the state to the input field
+              onChange={(e) => setPinCode(e.target.value)}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -79,25 +153,13 @@ const Login = () => {
               sx={{ marginBottom: 3 }}
             />
 
-            {/* Login button */}
-            <Button fullWidth variant="contained" color="primary" sx={{ height: 50 }}>
+            <Button fullWidth variant="contained" color="primary" sx={{ height: 50 }} type="submit">
               Login
             </Button>
-
-            {/* Footer (flag icon) */}
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                marginTop: 4,
-              }}
-            >
-              <FlagIcon sx={{ fontSize: 30 }} />
-            </Box>
           </Box>
         </Grid2>
 
-        <Grid2 item xs={false} size={{ sm: 12, md: 6 }}>
+        <Grid2 size={{ sm: 12, md: 6 }}>
           <Box
             sx={{
               width: "100%",
@@ -113,6 +175,7 @@ const Login = () => {
               src={BackgroundImage}
               alt="Background"
               style={{
+                marginTop: 50,
                 width: "80%",
                 height: "auto",
                 objectFit: "contain",
@@ -125,7 +188,8 @@ const Login = () => {
                 top: "8%",
                 left: "50%",
                 transform: "translate(-50%, -50%)",
-                color: "#000",
+                fontWeight: "bold",
+                color: "#d5be0e",
               }}
             >
               Welcome
