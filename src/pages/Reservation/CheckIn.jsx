@@ -37,7 +37,7 @@ const CheckIn = ({ checkIn }) => {
       </Grid2>
 
       <Grid2 size={{ xs: 8, sm: 8, md: 8 }} container alignItems="center">
-        {checkIn.taxi.includes("no_taxi") ? (
+        {!checkIn.taxi.includes("no_taxi") ? (
           <>
             <Grid2 size={{ xs: 4, sm: 4, md: 4 }}>
               <CustomIconButton>

@@ -116,9 +116,9 @@ const Reservation = () => {
 
         setMediaFiles(data.Reservationinfo.Property_physical.Mediafiles);
 
-        setLoading(false); 
+        setLoading(false);
       } catch {
-        setLoading(false); 
+        setLoading(false);
         navigate("/", { state: { error: "Error fetching reservation data. Please try again." } });
       }
     };
@@ -198,7 +198,7 @@ const Reservation = () => {
 
       {mediaFiles &&
         mediaFiles.map((e, index) => (
-          <Grid2 key={index} item size={{ xs: 6, sm: 6, xl: 4 }}>
+          <Grid2 key={index} item size={{ xs: 12, sm: 6, xl: 4 }}>
             <MediaFiles media={e} />
           </Grid2>
         ))}

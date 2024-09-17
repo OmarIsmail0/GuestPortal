@@ -12,7 +12,7 @@ const PropertyInfo = ({ property }) => {
 
   const PropertyInfoBodyContent = (
     <Grid2 container alignItems="center">
-      <Grid2 size={{ xs: 8, sm: 6, md: 4 }}>
+      <Grid2 size={{ xs: 6, sm: 6, md: 4 }}>
         <CardMedia
           sx={{}}
           component="img"
@@ -22,7 +22,7 @@ const PropertyInfo = ({ property }) => {
         />
       </Grid2>
 
-      <Grid2 size={{ xs: 4, sm: 6, md: 8 }}>
+      <Grid2 size={{ xs: 6, sm: 6, md: 8 }}>
         <Typography sx={{ color: "gray", textAlign: "right" }}>{property.Property_Name}</Typography>
         <br />
         <br />

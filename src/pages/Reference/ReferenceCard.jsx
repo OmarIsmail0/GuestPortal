@@ -1,15 +1,17 @@
 /* eslint-disable react/prop-types */
 
-import { Card, CardContent, CardMedia, Typography, Box } from "@mui/material";
+import { Card, CardContent, CardMedia, Typography, Box, useMediaQuery } from "@mui/material";
 
 const ReferenceCard = ({ physicalName, location, dateFrom, dateTo, image, selected, onSelect, onDoubleClick }) => {
+  const isMobile_1080 = useMediaQuery("(max-width:1080px)");
+  const isMobile_600 = useMediaQuery("(max-width:600px)");
   return (
     <Card
       sx={{
         display: "flex",
         mb: 2,
         backgroundColor: selected ? "rgba(255, 165, 0, 0.5)" : "white",
-        width: "50vw",
+        width: isMobile_600 ? "100vw" : isMobile_1080 ? "90vw" : "50vw",
         boxShadow: 4,
         "&:hover": {
           backgroundColor: "rgba(255, 165, 0, 0.5)",

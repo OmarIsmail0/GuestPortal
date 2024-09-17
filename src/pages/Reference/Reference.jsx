@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, useMediaQuery } from "@mui/material";
 import { useEffect, useState } from "react";
 import ReferenceCard from "./ReferenceCard";
 import { useNavigate, useParams } from "react-router-dom";
@@ -8,6 +8,9 @@ const Reference = () => {
   const [reference, setReference] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(null);
   const navigate = useNavigate();
+
+  const isMobile_1080 = useMediaQuery("(max-width:1080px)");
+  const isMobile_600 = useMediaQuery("(max-width:600px)");
 
   const { rid, pin } = useParams();
 
@@ -46,7 +49,7 @@ const Reference = () => {
         sx={{
           display: "flex",
           justifyContent: "flex-start",
-          width: "50vw",
+          width: isMobile_600 ? "100vw" : isMobile_1080 ? "90vw" : "50vw",
           mb: 2,
         }}
       >

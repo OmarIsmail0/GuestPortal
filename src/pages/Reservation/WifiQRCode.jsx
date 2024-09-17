@@ -9,11 +9,11 @@ const WifiQRCode = ({ wifi }) => {
 
   const WifiBodyContent = (
     <Grid2 container alignItems="center" spacing={2}>
-      <Grid2 size={{ xs: 4, sm: 5, md: 6, lg: 5, xl: 4 }}>
+      <Grid2 size={{ xs: 5, sm: 5, md: 6, lg: 5, xl: 4 }}>
         <QRCodeCanvas value={qrCodeValue} />
       </Grid2>
 
-      <Grid2 size={{ xs: 8, sm: 7, md: 6, lg: 7, xl: 8 }}>
+      <Grid2 size={{ xs: 7, sm: 7, md: 6, lg: 7, xl: 8 }}>
         <Typography sx={{ color: "#3f8c3b", fontWeight: "bold", fontSize: 20, textAlign: "right" }}>WIFI</Typography>
         <Typography variant="body1" fontSize={18}>
           Name of WIFI:
