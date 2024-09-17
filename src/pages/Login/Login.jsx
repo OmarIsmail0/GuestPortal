@@ -41,25 +41,22 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    console.log("Reservation Number:", reservationNumber);
-    console.log("PIN Code:", pinCode);
-
     if (reservationNumber && pinCode) {
       setLoading(true);
-      console.log("object");
       axios
-        .get(`https://uploads.shortletsmalta.com/GuestPortal_Validation/?rid=${2409048590}&pincode=${5371}`)
+        .get(`https://uploads.shortletsmalta.com/GuestPortal_Validation/?rid=${reservationNumber}&pincode=${pinCode}`)
         .then((e) => {
+          console.log(e);
           setLoading(false);
-          if (e.data) {
-            navigate(`/rid/${reservationNumber}/pin/${pinCode}`);
-          } else {
-            navigate(`/reservation/${reservationNumber}/pin/${pinCode}`);
-          }
+          navigate(`/rid/${reservationNumber}/pin/${pinCode}`);
         })
-        .catch(() => setLoading(false));
+        .catch(() => {
+          setLoading(false);
+          navigate(`/reservation/${reservationNumber}/pin/${pinCode}`);
+        });
     } else {
-      alert("Please enter both reservation number and PIN code.");
+      setErrorMessage("Please Enter the Reservation and Pincode");
+      setSnackbarOpen(true);
     }
   };
 

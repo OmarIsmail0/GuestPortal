@@ -116,9 +116,9 @@ const Reservation = () => {
 
         setMediaFiles(data.Reservationinfo.Property_physical.Mediafiles);
 
-        setLoading(false); // Data fetch completed, set loading to false
+        setLoading(false); 
       } catch {
-        setLoading(false); // On error, set loading to false
+        setLoading(false); 
         navigate("/", { state: { error: "Error fetching reservation data. Please try again." } });
       }
     };
