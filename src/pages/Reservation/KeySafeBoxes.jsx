@@ -25,7 +25,7 @@ const KeySafeBoxes = ({ keySafeBoxes }) => {
           <Typography sx={{ color: "#3f8c3b", fontWeight: "bold", fontSize: 20, textAlign: "right" }}>Keys</Typography>
         </Grid2>
 
-        <Grid2 size={6}>
+        <Grid2 size={{ md: 8, lg: 6 }}>
           <Button
             variant="contained"
             sx={{ mb: 1, color: "white", bgcolor: "gray", fontSize: 15, width: "100%" }}
@@ -34,8 +34,8 @@ const KeySafeBoxes = ({ keySafeBoxes }) => {
             {showCode_1 ? "Hide code" : "Show code"}
           </Button>
         </Grid2>
-        <Grid2 size={2} />
-        <Grid2 size={4} alignContent="center">
+        <Grid2 size={{ md: 1, lg: 2 }} />
+        <Grid2 size={{ md: 3, lg: 4 }} alignContent="center">
           {showCode_1 && <Typography variant="body1">{keySafeBoxes[0].code}</Typography>}
           {!showCode_1 && <Typography variant="body1"> ------- </Typography>}
         </Grid2>
@@ -46,7 +46,7 @@ const KeySafeBoxes = ({ keySafeBoxes }) => {
           <Typography fontSize={16}>Emergency keycode for Apartment:</Typography>
         </Grid2>
 
-        <Grid2 size={6}>
+        <Grid2 size={{ md: 8, lg: 6 }}>
           <Button
             variant="contained"
             sx={{ mb: 1, color: "white", bgcolor: "gray", fontSize: 15, width: "100%" }}
@@ -55,8 +55,8 @@ const KeySafeBoxes = ({ keySafeBoxes }) => {
             {showCode_2 ? "Hide code" : "Show code"}
           </Button>
         </Grid2>
-        <Grid2 size={2} />
-        <Grid2 size={4} alignContent="center">
+        <Grid2 size={{ md: 1, lg: 2 }} />
+        <Grid2 size={{ md: 3, lg: 4 }} alignContent="center">
           {showCode_2 && <Typography variant="body1">{keySafeBoxes[1].code}</Typography>}
           {!showCode_2 && <Typography variant="body1"> ------- </Typography>}
         </Grid2>

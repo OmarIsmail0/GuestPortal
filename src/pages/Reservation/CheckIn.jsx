@@ -22,6 +22,7 @@ const StyledButton = styled(Button)(() => ({
 }));
 
 const CheckIn = ({ checkIn }) => {
+  console.log(checkIn);
   const CheckInBodyContent = (
     <Grid2 container spacing={2} alignItems="center" sx={{ marginBottom: 3 }}>
       <Grid2 size={{ xs: 8, sm: 6, md: 5 }}>
@@ -29,6 +30,7 @@ const CheckIn = ({ checkIn }) => {
           <FlightLandIcon style={{ color: "white", fontSize: 30 }} />
         </CustomIconButton>
       </Grid2>
+
       <Grid2 size={{ xs: 4, sm: 6, md: 7 }}>
         <Typography sx={{ color: "gray", textAlign: "right" }}>Check in</Typography>
         <Typography sx={{ textAlign: "right", fontSize: 20, fontWeight: "bold" }}>
@@ -37,7 +39,7 @@ const CheckIn = ({ checkIn }) => {
       </Grid2>
 
       <Grid2 size={{ xs: 8, sm: 8, md: 8 }} container alignItems="center">
-        {!checkIn.taxi.includes("no_taxi") ? (
+        {checkIn.taxi.length > 0 ? (
           <>
             <Grid2 size={{ xs: 4, sm: 4, md: 4 }}>
               <CustomIconButton>
@@ -45,7 +47,7 @@ const CheckIn = ({ checkIn }) => {
               </CustomIconButton>
             </Grid2>
             <Grid2 size={{ xs: 8, sm: 8, md: 8 }} sx={{ marginLeft: "-10%" }}>
-              <Typography>{checkIn.taxi}</Typography>
+              <Typography>You have {checkIn.taxi.length} taxi </Typography>
             </Grid2>
           </>
         ) : (
@@ -68,12 +70,12 @@ const CheckIn = ({ checkIn }) => {
 
   const CheckInFooterContent = (
     <>
-      <Grid2 size={{ xs: 6, sm: 12, md: 6 }}>
+      <Grid2 size={{ xs: 6, sm: 6, md: 6 }}>
         <Typography color="grey" fontSize={16} component="p">
           {checkIn.ExternalRef}
         </Typography>
       </Grid2>
-      <Grid2 size={{ xs: 6, sm: 12, md: 6 }} sx={{ display: "flex", justifyContent: "flex-end" }}>
+      <Grid2 size={{ xs: 6, sm: 6, md: 6 }} sx={{ display: "flex", justifyContent: "flex-end" }}>
         <StyledButton>Checkin Time</StyledButton>
       </Grid2>
     </>

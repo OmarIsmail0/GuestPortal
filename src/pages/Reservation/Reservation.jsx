@@ -71,9 +71,10 @@ const Reservation = () => {
           data.Reservationinfo.Date_checkin
         );
 
+        // let checkInTaxi = data.Transport_Checkin.filter((e) => (e.Transport_Checkin = true));
+
         setCheckIn({
-          taxi: response.data.GuestPortalOptions.Captions.find((e) => e.CaptionName == "guestportal_youhave_taxi")
-            .CaptionValue,
+          taxi: data.TransportInfos.filter((e) => e.Transport_Checkin === true),
           formattedDate_checkin: formattedDateIn,
           formattedTime_checkin: formattedTimeIn,
           ExternalRef: data.Reservationinfo.InternalRef,
@@ -84,6 +85,7 @@ const Reservation = () => {
         );
 
         setCheckOut({
+          taxi: data.TransportInfos.filter((e) => e.Transport_Checkout === true),
           formattedDate_checkout: formattedDateOut,
           formattedTime_checkout: formattedTimeOut,
         });

@@ -18,6 +18,7 @@ const ClientInfo = ({ clientInfo }) => {
           <PersonIcon style={{ color: "gray", fontSize: 30 }} />
         </CustomIconButton>
       </Grid2>
+
       <Grid2 size={{ xs: 4, sm: 4, md: 5 }}>
         <Typography sx={{ color: "gray" }}>{clientInfo.CompanyName}</Typography>
       </Grid2>
@@ -42,7 +43,9 @@ const ClientInfo = ({ clientInfo }) => {
               <EmailIcon fontSize="small" />
             </Grid2>
             <Grid2 item>
-              <Typography variant="body2">{clientInfo.ClientEmail}</Typography>
+              <Typography variant="body2" sx={{ wordWrap: "break-word" }}>
+                {clientInfo.ClientEmail}
+              </Typography>
             </Grid2>
           </Grid2>
         </Grid2>
@@ -58,13 +61,7 @@ const ClientInfo = ({ clientInfo }) => {
       sx={{ display: "flex", justifyContent: "space-between" }}
     >
       <Box sx={{ display: "flex", alignItems: "center" }}>
-        {" "}
-        {/* Ensure flex display and alignment */}
-        <CardMedia
-          component="img"
-          sx={{ width: 50, marginRight: 2 }} // Optional margin for spacing
-          image={clientInfo.OTAImageURL}
-        />
+        <CardMedia component="img" sx={{ width: 50, marginRight: 2 }} image={clientInfo.OTAImageURL} />
         <Typography variant="body1" component="div">
           {clientInfo.ExternalRef}
         </Typography>
@@ -73,7 +70,19 @@ const ClientInfo = ({ clientInfo }) => {
         <Typography variant="body1" component="div">
           {clientInfo.PhoneNo}
         </Typography>
-        <Link href={`mailto:${clientInfo.CompanyEmail}`} variant="body2" color="primary">
+        <Link
+          title={clientInfo.CompanyEmail}
+          style={{
+            display: "inline-block",
+            maxWidth: "200px",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
+          href={`mailto:${clientInfo.CompanyEmail}`}
+          variant="body2"
+          color="primary"
+        >
           {clientInfo.CompanyEmail}
         </Link>
       </Grid2>

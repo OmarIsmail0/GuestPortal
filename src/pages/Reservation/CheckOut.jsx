@@ -8,6 +8,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import FlightLandIcon from "@mui/icons-material/FlightLand";
 
 import CustomIconButton from "../../components/CustomIconButton";
+import LocalTaxiIcon from "@mui/icons-material/LocalTaxi";
 
 const StyledButton = styled(Button)(() => ({
   backgroundColor: "navy", // Button color
@@ -28,18 +29,36 @@ const CheckOut = ({ checkOut }) => {
       <Grid2 size={{ xs: 8, sm: 6, md: 5 }}>
         <CustomIconButton>{<FlightLandIcon style={{ color: "white", fontSize: 30 }} />}</CustomIconButton>
       </Grid2>
+
       <Grid2 size={{ xs: 4, sm: 6, md: 7 }}>
         <Typography sx={{ color: "gray", textAlign: "right" }}>Check out</Typography>
         <Typography sx={{ textAlign: "right", fontSize: 20, fontWeight: "bold" }}>
           {checkOut.formattedDate_checkout}
         </Typography>
       </Grid2>
+      <Grid2 size={{ xs: 8, sm: 8, md: 8 }} container alignItems="center">
+        {checkOut.taxi.length > 0 ? (
+          <>
+            <Grid2 size={{ xs: 4, sm: 4, md: 4 }}>
+              <CustomIconButton>
+                <LocalTaxiIcon style={{ color: "white", fontSize: 30 }} />
+              </CustomIconButton>
+            </Grid2>
+            <Grid2 size={{ xs: 8, sm: 8, md: 8 }} sx={{ marginLeft: "-10%" }}>
+              <Typography>You have a {checkOut.taxi.length} taxi </Typography>
+            </Grid2>
+          </>
+        ) : (
+          <div style={{ height: 50 }} />
+        )}
+      </Grid2>
 
+      {/* 
       <Grid2 size={{ xs: 8, sm: 8, md: 8 }} container alignItems="center">
         <Grid2 size={{ xs: 8, sm: 8, md: 9 }}>
           <Typography>{""}</Typography>
         </Grid2>
-      </Grid2>
+      </Grid2> */}
 
       <Grid2 size={{ xs: 4, sm: 4, md: 4 }} container alignItems="center" sx={{ textAlign: "right" }}>
         <Grid2 size={{ xs: 8, sm: 8, md: 8 }}>
